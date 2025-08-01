@@ -1,7 +1,6 @@
 pipeline {
   agent any	
   stages {
-
     stage ('BUILD') {
       steps {
         echo "This is Build stage" 
@@ -12,12 +11,22 @@ pipeline {
       }  
     }  
     
-    stage ('TEST') {
+    stage ('TEST PARALLEL') {
+	    parallel {
+		    stage ('TEST ON CHROME') {
       steps {
-        echo "This is Test stage" 
+        echo 'This is Test on chrome browser' 
         sh 'sleep 5; exit 0'
       }  
     }  
+		    stage ('TEST ON SAFARI') {
+      steps {
+        echo 'This is Test on safari browser' 
+        sh 'sleep 5; exit 0'
+      }
+		    }
+	    }
+    }
     
     stage ('DEPLOY') {
       steps {
