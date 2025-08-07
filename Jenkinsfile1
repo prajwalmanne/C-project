@@ -25,6 +25,12 @@ pipeline {
         sh 'sleep 5; exit 0'
       }
 		    }
+                   stage ('Test on INTERNET BROWSER') {
+         steps {
+         echo 'This is test on internet browser'
+         sh 'sleep 5; exit 0'
+}
+}
 	    }
     }
     
